@@ -1,34 +1,15 @@
-/**
- * This page includes the express logic. 
- */
-
-
+import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import express from "express";
-import path from "path";
-import cookieParser from "cookie-parser";
 
-const app = express();
-
-
-
-// Module to work with cookies
-app.use(cookieParser());
-
-// Load global config from .env file
 dotenv.config();
 
+const app: Express = express();
+const port = process.env.PORT;
 
-app.get("/", (req, res) => {
-	res.send("Hello World!");
+app.get("/", (req: Request, res: Response) => {
+	res.send("Express + TypeScript Server");
 });
 
-
-
-
-let serverPort:number = 3000; 
-if(process.env.SERVER_PORT !== undefined){
-	serverPort = parseInt(process.env.SERVER_PORT);
-}
-
-app.listen(serverPort, console.log("Webshop Server has started at port " + serverPort));
+app.listen(port, () => {
+	console.log("server: Server is running at http://localhost:${port}");
+});
