@@ -1,0 +1,170 @@
+% Dies ist die Hauptdatei. Von hier aus werden alle anderen Dateien und Daten geladen
+\documentclass[
+    ngerman, %Sprache
+    hidelinks, % nicht nötig ? 
+    chapteratlists=0pt % chapteratlists gibt den Abstand bei Verzeichnissen von Kapiteln zu Kapiteln an
+    ]{scrreprt}
+\KOMAoptions{
+    fontsize = 12pt,
+    titlepage = true,
+    DIV=13
+}
+
+% In der header.text Datei erfolgen die Einbindungen aller Packages und damit verbundene Konfigurationen. 
+%Die variable.tex beinhaltet Variablen der Ausarbeitung, um eine Anpassung an eine andere Arbeit zu erleichtern. 
+%In der commands.tex Datei sind eigene Befehle hinterlegt. 
+\input{headerFiles/header.tex}
+\input{headerFiles/variablen.tex}
+\input{headerFiles/commands.tex}
+
+% Debugging und Nützlich 
+    %\usepackage{showframe} % Rahmen um Blockelemente
+    %\usepackage{labelschanged} % Fehler mit Labeln werden besser geloggt
+    %\usepackage{showkeys} % Label werden in der Pdf angezeigt 
+    \usepackage[german,textsize=tiny, colorinlistoftodos, disable]{todonotes} % Zum einfügen von TODOs hilfreich
+    % Parameter disable um es zu verstecken
+        \setlength {\marginparwidth }{2cm} % Legt die breite für die Seitennotizen fest
+
+
+
+\begin{document}
+    %TODO List (muss später auskommentiert werden)
+    \listoftodos 
+    
+    %Deckblatt
+    \include{inhalt/00Deckblatt.tex}
+
+    %Abschalten der Linien von der Kopf- und Fußzeile
+    \KOMAoptions{headsepline=false, plainheadsepline=false, footsepline=true, plainfootsepline=true}
+
+    %Abstand des Chapters zum Seitenanfang
+    \renewcommand*\chapterheadstartvskip{\vspace*{-\topskip}}
+    \renewcommand*\chapterheadendvskip{\vspace*{1\baselineskip plus .1\baselineskip minus .167\baselineskip}}
+
+    % Nummerierung der Verzeichnis
+    \pagenumbering{Roman}
+    \cfoot*{\pagemark}
+    
+    %Erklärung
+    \include{inhalt/00Verzeichnisse/01Erklaerung}
+
+    %Kurzzusammenfassung
+    \include{inhalt/00Verzeichnisse/02Zusammenfassung}
+
+    %Abstract
+    \include{inhalt/00Verzeichnisse/03Abstract}
+
+   % Inhaltsverzeichnis
+    \begin{spacing}{1}
+        %\addcontentsline{toc}{chapter}{Inhaltsverzeichnis}
+      \tableofcontents
+    \end{spacing}
+    \begin{spacing}{1.5}
+
+    % Abkürzungsverzeichnis
+    \cleardoublepage
+    % Eintrag im Inhaltsverzeichnis
+        \DefineNewListOf{Abkürzungsverzeichnis}
+    \input{verzeichnisse/abkuerzungsverzeichnis}
+    \printglossary[title=Abkürzungsverzeichnis,style=index,nogroupskip, type=\acronymtype]
+    %\input{verzeichnisse/abkuerzungsverzeichnis.tex}
+    
+    %Abbildungsverzeichnis
+    \cleardoublepage
+    % Eintrag im Inhaltsverzeichnis
+        \DefineNewListOf{Abbildungsverzeichnis}
+    \listoffigures
+    
+    % Tabellenverzeichnis
+   % \cleardoublepage
+     % Eintrag im Inhaltsverzeichnis
+        \DefineNewListOf{Tabellenverzeichnis}
+   \listoftables
+
+    % Quellcodeverzeichnis
+   % \cleardoublepage
+    % Eintrag im Inhaltsverzeichnis
+        \DefineNewListOf{Listings} %% German: Quellcodeverzeichnis
+    \lstlistoflistings
+
+    %Glossar
+    \cleardoublepage
+    % Eintrag im Inhaltsverzeichnis
+        \DefineNewListOf{Glossar} 
+    \printglossary[style=altlist]
+    \input{verzeichnisse/Glossar/00Gloassar}
+    
+    % Gender Hinweis
+    %\include{inhalt/00Verzeichnisse/05Gender}
+    
+    \end{spacing}
+    
+    
+    %Einschalten der Linien von der Kopf- und Fußzeile
+    \cleardoublepage
+    \KOMAoptions{headsepline=true, plainheadsepline=true, footsepline=true, plainfootsepline=true}
+        
+    %Inhalt
+    \begin{spacing}{1.5}
+    
+        %Seitennummerierung
+        \cleardoublepage
+        \setcounter{lastRomaPage}{\value{page}}
+        \pagenumbering{arabic}
+        \setcounter{page}{1}
+        \cfoot*{Seite \thepage\ von \pageref{LastPage} }
+    
+        % Chapter am oberen rechten Rand
+        \automark{chapter}
+        \ohead*{\headmark}
+        
+        % Einleitung
+        \include{inhalt/01Einleitung}
+
+        % Technische Grundlagen
+        \include{inhalt/02TechnischeGrundlagen}
+        
+        % Analyse
+        \include{inhalt/03Analyse}
+
+        % Architektur 
+        \include{inhalt/04Architektur}
+
+        % Konzeptionierung 
+        \include{inhalt/05Konzeptionierung}
+
+        % Implementierung
+        \include{inhalt/06Implementierung}
+
+        % Reflexion
+        \include{inhalt/07Reflexion}
+        
+
+    \end{spacing}
+
+    % Reset der Seitenzahlen für Verzeichnisse
+    \cleardoublepage
+    \pagenumbering{Roman}
+    \setcounter{page}{\value{lastRomaPage}}
+
+    %Abschalten der Linien von der Kopf- und Fußzeile
+    \KOMAoptions{headsepline=false, plainheadsepline=false}
+    
+    % Literaturverzeichnis
+    \cleardoublepage
+        %Bib style
+        \defbibheading{headLit}{\addchap{Literaturverzeichnis}}
+        \printbibliography[heading=headLit]
+    
+    \newpage
+   
+
+    % Anhang (Bilder und Quellcode)
+    \input{inhalt/08Anhang}
+
+
+
+   
+
+    
+\end{document}

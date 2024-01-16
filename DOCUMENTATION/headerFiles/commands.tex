@@ -1,0 +1,89 @@
+% Diese Datei umfasst selbst definierte oder geänderte Befehle
+    % List of commands
+    %   Legende
+    %   L = Label
+    %   K = Kapitel
+    %   Sek = Sektion
+    %   S = Seite
+    %   B = Bezeichnung
+    %
+    %   Gruppe  Bezeichnung Ergebnis
+    %   Referenzen
+    %       Kapitel
+    %           \Uref{L}                | (siehe Kapitel 3.4)
+    %           \Chref{L}               | (siehe Kapitel 3.4 Name)
+    %           \ChInref{L}             | Kapitel 3.4 Name
+    %       Anforderungen
+    %           \RequirementInRef{L}{B} | Anforderung FJ-F-<NUMMER> Name
+    %           \RequirementRef{L}{B}   | (siehe Anforderung FJ-F-<NUMMER> Name)
+    %       Bilder 
+    %           \PicRef{L}              | Abb. <Nummer> <Kursiv Beschreibung>
+    %           \PicInRef{L}            | Abb. <Nummer>
+    %       Zitate                      
+    %           \citeCh{L}{K}           | (..., siehe Kap. ...)
+    %           \citeChSec{L}{K}{Sek}   | (..., siehe Kap. ... Abs. ....)
+    %           \citePage{L}{S}         | (..., vgl. S. ...)
+    %
+    %
+    %   Kapitel
+    %      Erstellt einen Eintrag im Inhaltsverzeichnis und vor dem Kapitel
+    %       \DefineNewChapter{Name} | Geeignet für Einleitung, Sperrvermerk, Anhang, Abkürzungsverzeichnis
+    %       \DefineNewListOf[label]{Name}  | Geeignet für Abbildungsverzeichnis, Tabellenverzeichnis, ...
+    %
+
+\input{headerFiles/AnfoderungsDefinition/Anforderungen}
+
+
+%Referenzen 
+    % Universal Referenz mit angepasstem Text (siehe Kapitel 3.4)
+        \newcommand{\Uref}[1]{(siehe \cref{#1})}
+    % Kapitel Referenz mit angepasstem Text (siehe Kapitel 3.4 Name)
+        \newcommand{\ChRef}[1]{(siehe \cref{#1} \textit{\nameref{#1}})}
+    % Kapitel Referenz Inline mit angepasstem Text Kapitel 3.4 Name
+        \newcommand{\ChInRef}[1]{\cref{#1} \textit{\nameref{#1}}}
+
+        
+    % Bild Referenz mit angepasstem Text Abb. <Nummer> <Kursiv Beschreibung>
+        \newcommand{\PicRef}[1]{\cref{#1} \textit{\nameref{#1}}}
+    % Bild Referenz mit angepasstem Text Abb. <Nummer> 
+        \newcommand{\PicInRef}[1]{\cref{#1}}
+
+        
+    % Anforderungs Referenz mit angepasstem Text (siehe Anforderung F-<NUMMER> Name)
+        \newcommand{\RequirementRef}[1]{(siehe Anforderung \textit{\ref{Anf:#1}}}
+    % Anforderungs Referenz mit angepasstem Text Anforderung F-<NUMMER> Name
+        \newcommand{\RequirementInRef}[1]{Anforderung \textit{\ref{Anf:#1}}}
+
+% Zitierung
+    % Kapitel zietieren (..., siehe Kap. ...)
+        \newcommand{\citeCh}[2]{\parencite[siehe Kap. #2]{#1}}
+    % Kapitel mit Sektion zietieren (..., siehe Kap. ... Abs. ....)
+        \newcommand{\citeChSec}[3]{\parencite[siehe Kap. #2 Abs. #3]{#1}}
+    % Mit Seiten zietieren (..., vgl. S. ...)
+        \newcommand{\citePage}[2]{\parencite[vgl. S. #2]{#1}}
+
+
+
+
+
+% Anpassung der Chapter im Inhaltsverzeichnis 
+    % \DefineNewChapter{Name}
+    % (geeignet für Einleitung, Sperrvermerk, Anhang, ...)
+    \newcommand{\DefineNewChapter}[1]{
+        \phantomsection 
+        \addtocontents{toc}{\vspace{-1.5ex}}
+        \addcontentsline{toc}{chapter}{#1}
+        \addchap*{#1}
+    }
+
+    % (geeignet für Abbildungsverzeichnis, Tabellenverzeichnis, ...)
+    % \DefineNewListOf{label}[Name]
+    \newcommand{\DefineNewListOf}[2][]{
+        \phantomsection 
+        \ifthenelse{\isempty{#1}}{}{\label{#1}}
+        \addtocontents{toc}{\vspace{-1.5ex}}
+        \addcontentsline{toc}{chapter}{#2}
+    }
+
+
+

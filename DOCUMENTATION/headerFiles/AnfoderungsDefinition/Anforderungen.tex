@@ -1,0 +1,50 @@
+%   Listen
+%       \DefineFktAnforderung{Headline]{Beschreibung}{Labelsuffix}
+%       \DefineNichtFktAnforderung{Headline}{Beschreibung}{Labelsuffix}
+
+%\usepackage{tocloft}% http://ctan.org/pkg/tocloft
+
+\makeatletter % needed because of the @
+    \newcommand\storelabel[1]{\def\@currentlabel{#1}}
+\makeatother
+
+
+
+\newcounter{DefineFktAnforderung}
+\setcounter{DefineFktAnforderung}{0}
+
+% \AnforderungDesign{Präfix}{Headline}{Text}{Label}{Counter}
+\newcommand{\AnforderungDesign}[5]{
+    \noindent\textbf{#1-#5 ~#2}\storelabel{#1-#5 ~#2}\label{Anf:#4} \\
+    \noindent\rule[5mm]{\textwidth}{1pt} \\
+    \vspace{-15mm} 
+        
+    \noindent {#3}\nolinebreak
+    \vspace{5mm}
+}
+
+%\newlistof{DefineFktAnforderung}{DefineFktAnforderungDef}{\small Liste der funktionalen Anforderungen}
+% \DefineFktAnforderung{Headline}{Describtion}{Labelsuffix}
+\newcommand{\DefineFktAnforderung}[3]{
+    \refstepcounter{DefineFktAnforderung}
+
+    \AnforderungDesign{F}{#1}{#2}{#3}{\theDefineFktAnforderung} \\
+    
+    %\addcontentsline{DefineFktAnforderungDef}{figure}
+    %{\protect\numberline{F-\theDefineFktAnforderung}#1}\par%
+}
+
+
+\newcounter{DefineNotFktAnforderung}
+\setcounter{DefineNotFktAnforderung}{0}
+
+%\newlistof{DefineNotFktAnforderung}{DefineNotFktAnforderungDef}{\small Liste der nicht-funktionalen Anforderungen}
+% \DefineFktAnforderung{Headline}{Describtion}{Labelsuffix}
+\newcommand{\DefineNichtFktAnforderung}[3]{
+    \refstepcounter{DefineNotFktAnforderung}
+
+    \AnforderungDesign{NF}{#1}{#2}{#3}{\theDefineNotFktAnforderung} \\
+    
+    %\addcontentsline{DefineNotFktAnforderungDef}{figure}
+    %{\protect\numberline{F-\theDefineNotFktAnforderung}#1}\par%
+}
