@@ -3,21 +3,33 @@
 % Counter
     \newcounter{UseCaseCounter}
   
-   % \DefineUserStory{Title}{Als [Rolle] möchte ich [Ziel], damit [Begründung]}{Label}{Revisionsnummer}{Begründung für die Revisionsnummer}
-   %Labelpräfix USCA-<refnr.> 
-    \newcommand{\DefineUserStory}[5]{
+   % \DefineUserStory{Title}{Beschreibung}{Bild}{Label}
+   %Labelpräfix UC-<refnr.> 
+    \newcommand{\DefineUserStory}[4]{
         \refstepcounter{UseCaseCounter}
-        \begin{tabularx}{\textwidth}{|l|X|l|}
-            \hline
-            \multicolumn{2}{|X|}{\textbf{#1}\label{UST-#3}}                                                                       & Use Case \theUseCaseCounter            \\ \hline
-            \multicolumn{1}{|l|}{\textbf{Beschreibung:}}                                                & \multicolumn{2}{X|}{#2}      \\ \hline
-            \multicolumn{1}{|l|}{\textbf{Revisionsnummer:}} & \multicolumn{2}{X|}{#4}          \\ \hline
-            \multicolumn{1}{|l|}{\textbf{Begründung:}}                                                  & \multicolumn{2}{X|}{#5} \\ \hline
-        \end{tabularx}
-        \vspace{1cm}
+        \noindent\textbf{UC-\theUseCaseCounter ~#1}\storelabel{UC-\theUseCaseCounter ~#1}\label{Anf:#4} \\
+        \noindent\rule[5mm]{\textwidth}{1pt} \\
+        \vspace{-15mm} 
         
-        
-    
+        \begin{center}
+            \includegraphics[width=\textwidth]{#3}
+            \captionof{figure}{UC-\theUseCaseCounter ~#1}
+        \end{center}
+        \noindent {#2}\nolinebreak
+        \vspace{5mm}
     }
 
-    \DefineUserStory{Title}{Erklärung}{Label}{Revisionsnummer}{Begründung für die Revisionsnummer}
+    \DefineUserStory{Account anlegen}{Für die Erstellung eiens Accounts benötigt der User bereits eine E-Mail Adresse, Facebook oder Google Konto. Zudem muss die entsprechende Seite auf der Webseite geöffnet worden sein.}{images/01Startseite.png}{createAccount}
+    
+    \DefineUserStory{Benutzerinformationen verwalten}{Um die Benutzerinformationen zu bearbeiten und Anzupassen muss sich der Nutzer zuerst anmelden.}{images/01Startseite.png}{changeProfile}
+    
+    \DefineUserStory{Anmelden}{Um sich anmelden zu können, muss vorher ein Benutzerkonto angelegt werden.}{images/01Startseite.png}{loginUser}
+    
+    \DefineUserStory{Produkte in den Warenkorb legen}{Nutzer können Produkte in den Warenkorb legen. Hierzu sind keine vorherigen Schritte nötig.}{images/01Startseite.png}{manageBasket}
+    
+    \DefineUserStory{Kaufvorgang}{Bevor ein Kauf eingeleiet werden kann, müssen sich Produkte im Warenkorb befinden.}{images/01Startseite.png}{buy}
+    
+    \DefineUserStory{Produkte erstellen}{Produkte können nur von Administratoren des Webshops hinzugefügt werden. Dazu wird als erstes ein Login benötigt.}{images/01Startseite.png}{addProduct}
+    
+    \DefineUserStory{Produkte entfernen}{Um Produkte zu entfernen muss sich der Administrator mit einem Account anmelden, der die entsprechenden BErechtigungen hat.}{images/01Startseite.png}{deleteProduct}
+    
