@@ -1,0 +1,23 @@
+\section{Use Cases}
+
+% Counter
+    \newcounter{UseCaseCounter}
+  
+   % \DefineUserStory{Title}{Als [Rolle] möchte ich [Ziel], damit [Begründung]}{Label}{Revisionsnummer}{Begründung für die Revisionsnummer}
+   %Labelpräfix USCA-<refnr.> 
+    \newcommand{\DefineUserStory}[5]{
+        \refstepcounter{UseCaseCounter}
+        \begin{tabularx}{\textwidth}{|l|X|l|}
+            \hline
+            \multicolumn{2}{|X|}{\textbf{#1}\label{UST-#3}}                                                                       & Use Case \theUseCaseCounter            \\ \hline
+            \multicolumn{1}{|l|}{\textbf{Beschreibung:}}                                                & \multicolumn{2}{X|}{#2}      \\ \hline
+            \multicolumn{1}{|l|}{\textbf{Revisionsnummer:}} & \multicolumn{2}{X|}{#4}          \\ \hline
+            \multicolumn{1}{|l|}{\textbf{Begründung:}}                                                  & \multicolumn{2}{X|}{#5} \\ \hline
+        \end{tabularx}
+        \vspace{1cm}
+        
+        
+    
+    }
+
+    \DefineUserStory{Title}{Erklärung}{Label}{Revisionsnummer}{Begründung für die Revisionsnummer}

@@ -1,0 +1,204 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+
+% Ermöglicht das Erstellen von comment Blocks
+    \usepackage{comment} % Kommentarblöcke mit \begin{comment}
+
+% Eine Tabelle kann die größe einer Seite überschreiten
+    \usepackage{longtable} % Used for a table longer one page
+
+    
+%Import von Bildern
+    \usepackage{graphicx}
+    % Position der Bilder
+        \graphicspath{ {./images/} }
+    % Ausrichten von Bildern 
+        \usepackage[export]{adjustbox}
+
+
+% unterschiedliche Schriftarten
+    %\usepackage{lmodern}
+    %\usepackage{palatino} 
+    %\usepackage{tgheros}
+    %\usepackage{goudysans}
+    %\usepackage{libertine}
+    %\usepackage[sfdefault]{AlegreyaSans}
+        %\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}} % gehört zu AlegreyaSans
+    %\usepackage[sfdefault]{biolinum}
+    %\usepackage{courier}
+
+
+% Striche bei der Fuß-, sowie Kopfzeile
+    \usepackage[footsepline,plainfootsepline, headsepline, plainheadsepline]{scrlayer-scrpage} 
+    \pagestyle{scrheadings}
+    \clearpairofpagestyles
+    \KOMAoptions{
+        headheight = 1cm,
+        footheight = 1cm,
+        singlespacing  =true
+    }
+    
+% Größen der Überschriften
+    \setkomafont{chapter}{\Large}
+    \setkomafont{section}{\large}
+    \setkomafont{subsection}{\normalsize}
+    \setkomafont{subsubsection}{\small}
+
+% viele Mathe-Symbole
+    \usepackage{amssymb}
+    % Erweiterungen für amsmath
+        \usepackage{mathtools} 
+
+
+% Links
+    \usepackage{hyperref}
+    
+        % Durch diese Einstellung werden Links hervorgehoben durch die gegebenen Farben
+        %\hypersetup{
+        %   colorlinks,
+        %   linkcolor={red!50!black}, % color of internal links
+        %   citecolor={blue!50!black},% color of links to bibliography
+        %   urlcolor={blue!80!black}  % color of external links
+        %}
+    
+    % Referenz zu Bildern mit Ansicht auf Bilder
+    \usepackage[figure]{hypcap}
+    % Unter einer Abbildung steht nun Abb.
+    \addto\captionsngerman{%
+      \renewcommand{\figurename}{Abb.}%
+    }
+
+    % Referenzen in der Datei
+        \usepackage[nameinlink]{cleveref}
+                
+    	% nicht nötig da ngerman in document class definiert
+            \crefname{lstlisting}{Listing}{Listings}
+            %\crefname{chapter}{Kapitel}{Kapitel}
+            %\crefname{section}{Abschnitt}{Abschnitte}
+            %\crefname{subsection}{Unterabschnitt}{Unterabschnitte}
+            %\crefname{figure}{Abbildung}{Abbildungen}
+        
+
+% Ein Durchlauf bei der Erstellung von Verzeichnissen
+\usepackage{bookmark}
+\usepackage{makeidx}
+
+% Einstellung des allgemeinen Zeilenabstands und die möglichkeit zur Anpassnung mit spacing
+\usepackage[onehalfspacing]{setspace}
+
+% Anführungszeichen
+\usepackage[babel,german=quotes]{csquotes}
+
+%Unterstrich für die Unterschrift / Tabellen erstellung
+\usepackage{tabularx}
+% Tabellenformatierung
+    \usepackage{multirow}
+
+% Literaturverweise
+    \usepackage[style=authoryear, % Style Definition
+                backend=biber,    % Backend Definition
+                minnames=3,       % Minimale Anzahl an Namen
+                maxbibnames=3,    % Maximale Anzahl an Namen
+                dashed=false,     % 
+                sorting=nty       % Sortierung des Verzeichnisses nach name, title, year.
+                ]{biblatex}
+    % In dieser Datei erfolgt die Definition der Quellen 
+        \input{verzeichnisse/Literatur/01literatur.tex}
+    % Komma im Text bei cite zwischen den Daten (Standard .)
+        \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+    % Komma im Literaturverzeichnis zwischen den Daten (Standard .)
+        \renewcommand*{\newunitpunct}{\addcomma\space} 
+    % Zeichen hinter jeder Literatur im Verzeichnis (Standard .)
+        \renewcommand*{\finentrypunct }{} 
+    % Bezeichnung bei mehreren Autoren
+        \DefineBibliographyStrings{ngerman}{andothers = {{u. a.},}}
+    %Abstand im Literaturverzeichnis
+        % Allgemein
+            \setlength{\bibitemsep}{0.2\baselineskip}
+        % Gruppiert nach Namen
+            \setlength{\bibnamesep}{0.6\baselineskip}
+        % Abstand zwischen anderen Anfangsbuchstaben
+            %\setlength{\bibinitsep}{0.6\baselineskip}
+
+
+
+%Tabellen Einstellungen
+    % Fußnote in einer Tabelle
+    \usepackage{threeparttable}
+    %Tabellen/Bilder Überschrift/Unterschrift
+    \usepackage{caption}
+    %Anpassen der Float-Umgebungen 
+    \usepackage{float} % float kann mithilfe von capition entfernt werden (Nutze beides)
+    %Umbennen der Bezeichner
+    \addto\captionsngerman{
+        \renewcommand{\tablename}{\small{Tab.}}
+    }
+    
+
+%Farb Packet (Wird hauptsächlich beim Code highlighting genutzt) 
+    \usepackage[dvipsnames]{xcolor}
+
+% Für Codehighlighting
+    \usepackage{listings}
+    \definecolor{backgoundColor}{rgb}{.9,.9,.9} % lightgray 
+
+    % Programmiersprachen Definitionen
+    \input{headerFiles/Quellcode Highlighting/javaScript.tex}
+    \input{headerFiles/Quellcode Highlighting/json.tex}
+    
+    \lstset{
+       language={},
+       backgroundcolor=\color{backgoundColor},
+       extendedchars=true,
+       basicstyle=\footnotesize\ttfamily,
+       showstringspaces=false,
+       showspaces=false,
+       stepnumber=1,
+       numbers=left,
+       numberstyle=\footnotesize,
+       numbersep=9pt,
+       tabsize=2,
+       breaklines=true,
+       showtabs=false,
+       captionpos=b,
+       frame=single,
+       rulecolor=\color{black},
+       literate={✔}{$\checkmark$}{1}
+              {Ö}{{\"O}}1
+              {Ä}{{\"A}}1
+              {Ü}{{\"U}}1
+              {ß}{{\ss}}1
+              {ü}{{\"u}}1
+              {ä}{{\"a}}1
+              {ö}{{\"o}}1
+    }
+    
+    % Bezeichnung des Codes in der Unterschrift
+        %\renewcommand{\lstlistingname}{Quellcode}
+    % Überschrift des Quellcodeverzeichnis
+        %\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+
+
+%Anhängen von Pdf Dateien (muss nach xcolor geladen werden)
+\usepackage{pdfpages}
+
+% Drehen von Elemeneten
+\usepackage{rotating}
+
+
+
+
+% Glossary
+     \usepackage[nonumberlist,  % Option entfernt die Seitenzahl im Glossary
+                nopostdot,      % Kein Punkt am Ende (nötig für die Acronyme)
+                acronym         % Gloassary wird auch für die Acronyme genutzt 
+                ]{glossaries} 
+    \makeglossaries
+
+% Funktionale Programmierung für die eigenen Commands
+\usepackage{xifthen}
+
+
+% Help Counter for Pagenumbering
+\newcounter{lastRomaPage}
