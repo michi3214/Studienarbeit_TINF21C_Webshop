@@ -12,24 +12,27 @@
         \vspace{-15mm} 
         
         \begin{center}
-            \includegraphics[width=\textwidth]{#3}
+            \includegraphics[width=0.6\textwidth]{#3}
             \captionof{figure}{UC-\theUseCaseCounter ~#1}
         \end{center}
         \noindent {#2}\nolinebreak
         \vspace{5mm}
     }
 
-    \DefineUserStory{Account anlegen}{Für die Erstellung eiens Accounts benötigt der User bereits eine E-Mail Adresse, Facebook oder Google Konto. Zudem muss die entsprechende Seite auf der Webseite geöffnet worden sein.}{images/01Startseite.png}{createAccount}
+    \DefineUserStory{Account anlegen}{Für die Erstellung eiens Accounts benötigt der User bereits eine E-Mail Adresse, Facebook oder Google Konto. Je nach genutzten Verfahren müssen noch weitere benötigte Informationen hinterlegt werden.}{images/UseCases/UseCase1AccountAnlegen.png}{createAccount}
     
-    \DefineUserStory{Benutzerinformationen verwalten}{Um die Benutzerinformationen zu bearbeiten und Anzupassen muss sich der Nutzer zuerst anmelden.}{images/01Startseite.png}{changeProfile}
+    \DefineUserStory{Anmelden}{Um sich als Nutzer anzumelden, muss zuvor der Registierungsprozess abgeschlossen sein. Nach einer erfolgreichen Registrierung kann sich der Nutzer mit den Daten auf der Webseite anmelden.}{images/UseCases/UseCase2Login.png}{loginUser}
     
-    \DefineUserStory{Anmelden}{Um sich anmelden zu können, muss vorher ein Benutzerkonto angelegt werden.}{images/01Startseite.png}{loginUser}
+    \DefineUserStory{Benutzerinformationen verwalten}{Persönliche Informationen und Daten können durch den Nutzer verändert werden. Beispielsweise kann die Adresse des Nutzers angepasst werden. Die Änderungen erfordert eine vorherige erfolgreiche Anmeldung.}{images/UseCases/UseCase3BenutzerinformationenVerwalten.png}{changeProfile}
     
-    \DefineUserStory{Produkte in den Warenkorb legen}{Nutzer können Produkte in den Warenkorb legen. Hierzu sind keine vorherigen Schritte nötig.}{images/01Startseite.png}{manageBasket}
+    \DefineUserStory{Produkte in den Warenkorb legen}{Nutzer können Waren in den Warenkorb legen. Hierzu muss der Nutzer nicht angemeldet oder registriert sein.}{images/UseCases/UseCase4WarenkorbNutzen.png}{manageBasket}
     
-    \DefineUserStory{Kaufvorgang}{Bevor ein Kauf eingeleiet werden kann, müssen sich Produkte im Warenkorb befinden.}{images/01Startseite.png}{buy}
+    \DefineUserStory{Kaufvorgang}{Der Kaufvorrgang erfordert mindestens ein Produkt im Warenkorb und kann auf zwei Wegen geschehen. Der Nutzer kann ohne Registierung und Anmeldung einen Kauf vornehmen. Dazu steht der sogenannte Gastaccount zur Verfügung. Der zweite Weg ist die Registrierung oder Anmeldung an einem Nutzerkonto. Nach diesen Schritten kann der Kauf abgeschlossen werden. Der Kauf wird danach an die Logistik übermittelt für den Versand.}{images/UseCases/UseCase5Kaufen.png}{buy}
     
-    \DefineUserStory{Produkte erstellen}{Produkte können nur von Administratoren des Webshops hinzugefügt werden. Dazu wird als erstes ein Login benötigt.}{images/01Startseite.png}{addProduct}
-    
-    \DefineUserStory{Produkte entfernen}{Um Produkte zu entfernen muss sich der Administrator mit einem Account anmelden, der die entsprechenden BErechtigungen hat.}{images/01Startseite.png}{deleteProduct}
+    \DefineUserStory{Produkte erstellen}{\todo{Abbildung anpassen: vorheriger Login}
+    Neue Produkte können nur von Administratoren des Webshops hinzugefügt werden. Hierzu muss sich der Adminsitrator vorher einloggen}{images/UseCases/UseCase6Produkterstellen.png}{addProduct}
+   
+
+
+    \DefineUserStory{Produkte entfernen}{Auch das entfernen von Produkten, welche noch nicht ausverkauft sind, kann nur durch einen berechtigten Administrator erfolgen. Vor dem Entfernen eines Produktes muss sich der Administrator daher anmelden.}{images/UseCases/UseCase7Produktentfernen.png}{deleteProduct}
     
