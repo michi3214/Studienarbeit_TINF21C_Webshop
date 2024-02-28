@@ -6,7 +6,7 @@ networks:
 
 services:
   srv_website:
-    image: webshop-studienarbeit/srv_website
+    image: webshopstudienarbeit/srvwebsite
     container_name: SRV_Website
     hostname: srv_website
     build:

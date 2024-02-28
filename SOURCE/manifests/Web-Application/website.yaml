@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website
+spec:
+  selector:
+    matchLabels:
+      run: website
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: website
+    spec:
+      containers:
+      - name: website
+        imagePullPolicy: Never
+        image: webshopstudienarbeit/srvwebsite
+        ports:
+          - containerPort: 3000
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website
+spec:
+  selector:
+    app: website
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+    nodePort: 30001
+  type: LoadBalancer
