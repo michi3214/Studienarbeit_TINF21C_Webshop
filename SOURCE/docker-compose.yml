@@ -1,0 +1,21 @@
+version: "3.8"
+
+networks:
+  IoT_Projekt:
+    driver: bridge
+
+services:
+  srv_website:
+    image: webshop-studienarbeit/srv_website
+    container_name: SRV_Website
+    hostname: srv_website
+    build:
+      context: ./Web-Application/
+      dockerfile: ./Dockerfile
+    environment:
+      PORT: 5000
+    ports:
+      - '5000:80'
+    restart: unless-stopped
+    networks:
+      - IoT_Projekt

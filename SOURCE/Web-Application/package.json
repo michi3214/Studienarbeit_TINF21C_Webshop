@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "tsc",
+    "build": "cp -r ./src/GUI/views ./dist/GUI/ | tsc",
     "serve": "node dist/index.js"
   },
   "repository": {
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/express": "^4.17.20",
     "@types/node": "^20.8.9",
+    "ts-node": "^10.9.2",
     "typescript": "^5.2.2"
   },
   "dependencies": {
