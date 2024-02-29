@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: website
+  name: website-deployment
 spec:
   selector:
     matchLabels:
-      run: website
+      app: website
   replicas: 1
   template:
     metadata:
       labels:
-        run: website
+        app: website
     spec:
       containers:
       - name: website
@@ -24,13 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: website
+  name: website-service
 spec:
   selector:
     app: website
   ports:
-  - port: 3000
+  - port: 80
     targetPort: 3000
-    protocol: TCP
-    nodePort: 30001
   type: LoadBalancer

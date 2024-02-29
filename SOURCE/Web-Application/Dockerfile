@@ -9,7 +9,8 @@ COPY tsconfig.json ./
 
 RUN npm ci
 
-COPY . .
+COPY ./src/ ./src/
+COPY ./src/GUI/views ./dist/GUI/views
 
 RUN npm run build
 

@@ -2,9 +2,10 @@ import express, { Request, Response } from 'express';
 
 import path from 'path';
 
+console.log("Start webserver.")
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port =  process.env.PORT || 3000; 
 var MAINROUTER = require('./router/main_router');
 var Logger = require('./logger/logger');
 
@@ -20,10 +21,12 @@ app.use(Logger.Logger);
 
 app.use('/', MAINROUTER);
 
-//app.get('/', (req: Request, res: Response) => {
+// app.get('/', (req: Request, res: Response) => {
 //    res.send('Hello, TypeScript Express!');
-//});
+// });
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}. Please visit this side.`);
 });
+
+console.log("Started main.")
